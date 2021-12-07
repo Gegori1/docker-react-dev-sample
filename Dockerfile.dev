@@ -1,0 +1,17 @@
+FROM node:16-alpine
+
+# change working path 
+WORKDIR '/app'
+
+# copy file with dependencies need for the app to work propertly
+# this is copied in the first place to avoid long lating image build 
+COPY package.json .
+
+# install node
+RUN npm install
+
+# copy the rest of the files in the folder
+COPY . .
+
+CMD ["npm", "run", "start"]
+
